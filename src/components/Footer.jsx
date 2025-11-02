@@ -1,7 +1,262 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Heart,
+  Code,
+  Coffee,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  ExternalLink,
+  ArrowUp,
+  Copyright,
+} from "lucide-react";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    {
+      icon: Github,
+      href: "https://github.com/drishtiverma",
+      label: "GitHub",
+      color: "hover:text-gray-300",
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/in/drishtiverma",
+      label: "LinkedIn",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/drishtiverma",
+      label: "Twitter",
+      color: "hover:text-sky-400",
+    },
+    {
+      icon: Mail,
+      href: "mailto:drishti@example.com",
+      label: "Email",
+      color: "hover:text-pink-400",
+    },
+  ];
+
+  const quickLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  const contactInfo = [
+    { icon: Phone, text: "+91 98765 43210", href: "tel:+919876543210" },
+    { icon: Mail, text: "drishti@example.com", href: "mailto:drishti@example.com" },
+    { icon: MapPin, text: "New Delhi, India", href: "#" },
+  ];
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  };
+
+  const floatingVariants = {
+    initial: { y: 0 },
+    animate: {
+      y: [-5, 5, -5],
+      transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+    },
+  };
+
   return (
-    <div></div>
-  )
+    <motion.footer
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={containerVariants}
+      className="bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 border-t border-gray-800 relative overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)",
+            backgroundSize: "50px 50px",
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Brand */}
+          <motion.div variants={itemVariants} className="space-y-4">
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
+              <Code className="w-8 h-8 text-purple-500" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                Drishti Verma
+              </span>
+            </motion.div>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Web developer & cybersecurity enthusiast focused on creating secure, beautiful, and
+              user-friendly digital experiences.
+            </p>
+
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {socialLinks.map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{
+                    scale: 1.15,
+                    y: -4,
+                    transition: { type: "spring", stiffness: 400 },
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  className={`p-2 bg-gray-800/40 backdrop-blur-sm rounded-lg border border-gray-700 text-gray-500 ${social.color} transition-all duration-300`}
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <ExternalLink className="w-5 h-5 text-blue-400" />
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link, i) => (
+                <motion.li key={i} whileHover={{ x: 5 }}>
+                  <a
+                    href={link.href}
+                    className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <div className="w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {link.name}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <Phone className="w-5 h-5 text-green-400" />
+              Get In Touch
+            </h3>
+            <ul className="space-y-3">
+              {contactInfo.map((info, i) => (
+                <motion.li
+                  key={i}
+                  whileHover={{ x: 3 }}
+                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300"
+                >
+                  <info.icon className="w-4 h-4 flex-shrink-0" />
+                  <a href={info.href} className="text-sm">
+                    {info.text}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Built With */}
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <Coffee className="w-5 h-5 text-amber-400" />
+              Built With
+            </h3>
+            <div className="space-y-2">
+              {[
+                { icon: Heart, color: "text-red-500", text: "Passion & Creativity" },
+                { icon: Code, color: "text-purple-500", text: "Modern Web Stack" },
+                { icon: Coffee, color: "text-amber-500", text: "Endless Coffee" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-2 text-gray-400"
+                >
+                  <item.icon className={`w-4 h-4 ${item.color}`} />
+                  <span className="text-sm">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Bar */}
+        <motion.div
+          variants={itemVariants}
+          className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <div className="flex items-center gap-2 text-gray-500 text-sm">
+            <Copyright className="w-4 h-4" />
+            <span>{currentYear} Drishti Verma. All rights reserved.</span>
+          </div>
+
+          {/* Scroll To Top */}
+          <motion.button
+            onClick={scrollToTop}
+            variants={floatingVariants}
+            initial="initial"
+            animate="animate"
+            whileHover={{
+              scale: 1.1,
+              backgroundColor: "rgba(147, 51, 234, 0.15)",
+            }}
+            whileTap={{ scale: 0.9 }}
+            className="p-3 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 text-gray-400 hover:text-white transition-all duration-300 group"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300" />
+          </motion.button>
+        </motion.div>
+
+        {/* Floating lights */}
+        <motion.div
+          variants={floatingVariants}
+          initial="initial"
+          animate="animate"
+          className="absolute -top-6 -left-6 w-8 h-8 bg-purple-500/20 rounded-full blur-lg"
+        />
+        <motion.div
+          variants={floatingVariants}
+          initial="initial"
+          animate="animate"
+          transition={{ delay: 1 }}
+          className="absolute -bottom-6 -right-6 w-6 h-6 bg-cyan-500/20 rounded-full blur-lg"
+        />
+      </div>
+    </motion.footer>
+  );
 }
