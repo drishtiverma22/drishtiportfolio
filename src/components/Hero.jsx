@@ -114,7 +114,7 @@ export default function Hero() {
         className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0"
       >
         <motion.img
-          src="https://img.freepik.com/free-photo/brunette-business-woman-with-wavy-long-hair-blue-eyes-stands-holding-notebook-hands_197531-343.jpg?semt=ais_hybrid&w=740&q=80"
+          src="https://res.cloudinary.com/dkqnq6rom/image/upload/v1767863137/WhatsApp_Image_2026-01-04_at_12.05.56_PM_zit07d.jpg"
           alt="Drishti Verma"
           className="rounded-full shadow-[0_0_30px_rgba(6,182,212,0.4)] border-4 border-cyan-400/30 w-64 h-64 md:w-80 md:h-80 object-cover"
           animate={{ y: [0, -10, 0], rotate: [0, 1, -1, 0] }}

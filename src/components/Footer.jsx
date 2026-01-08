@@ -56,9 +56,9 @@ export default function Footer() {
   ];
 
   const contactInfo = [
-    { icon: Phone, text: "+91 98765 43210", href: "tel:+919876543210" },
-    { icon: Mail, text: "drishti@example.com", href: "mailto:drishti@example.com" },
-    { icon: MapPin, text: "New Delhi, India", href: "#" },
+    { icon: Phone, text: "+91 9034097350", href: "tel:+919034097350" },
+    { icon: Mail, text: "drishtiverma2005@gmail.com", href: "mailto:drishtiverma2005@gmail.com" },
+    { icon: MapPin, text: "Kaithal,Haryana, India (136027)", href: "#" },
   ];
 
   const scrollToTop = () => {
