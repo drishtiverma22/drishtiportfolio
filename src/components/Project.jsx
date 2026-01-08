@@ -1,0 +1,1 @@
+// https://res.cloudinary.com/dkqnq6rom/image/upload/v1767863137/WhatsApp_Image_2026-01-04_at_12.05.56_PM_zit07d.jpg
