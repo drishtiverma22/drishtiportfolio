@@ -61,7 +61,7 @@ export default function HeroGlass() {
         >
           <div className="p-2 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600">
             <img
-              src=""
+              src="https://res.cloudinary.com/dkqnq6rom/image/upload/v1767863137/WhatsApp_Image_2026-01-04_at_12.05.56_PM_zit07d.jpg"
               alt="Drishti Verma"
               className="w-64 h-64 rounded-full object-cover border-4 border-black"
             />
