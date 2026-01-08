@@ -1,73 +1,71 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 
-export default function HeroGlass() {
+export default function HeroNeon() {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white px-6">
+    <section className="min-h-screen bg-black text-white flex items-center px-6 overflow-hidden">
       
-      {/* Glass Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative max-w-5xl w-full grid md:grid-cols-2 gap-10 
-        bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl"
-      >
+      {/* Glow blobs */}
+      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-cyan-500/30 blur-[120px]" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-600/30 blur-[120px]" />
 
-        {/* Left Content */}
-        <div className="flex flex-col justify-center gap-5">
-          <h1 className="text-4xl md:text-5xl font-bold">
-            Hello, I’m{" "}
+      <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* Text */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+            Hi, I’m{" "}
             <span className="text-cyan-400">Drishti Verma</span>
           </h1>
 
-          <h2 className="text-xl md:text-2xl text-gray-300">
-            Web Developer & Cybersecurity Enthusiast
-          </h2>
-
-          <p className="text-gray-400 leading-relaxed">
-            I build secure, scalable, and visually refined web experiences,
-            blending modern frontend engineering with a security-first mindset.
+          <p className="text-xl text-gray-400">
+            Web Developer · Cybersecurity Enthusiast
           </p>
 
-          <div className="flex gap-4 mt-4">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#projects"
-              className="px-6 py-2 rounded-lg bg-cyan-500/90 text-black font-semibold"
-            >
-              Projects
-            </motion.a>
+          <p className="max-w-xl text-gray-500">
+            I craft secure, high-performance web applications with a strong
+            focus on clean design and security-first engineering.
+          </p>
 
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <div className="flex gap-5 pt-4">
+            <a
+              href="#projects"
+              className="px-7 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:scale-105 transition"
+            >
+              View Work
+            </a>
+            <a
               href="#contact"
-              className="px-6 py-2 rounded-lg border border-white/20 text-white"
+              className="px-7 py-3 border border-white/20 rounded-full hover:bg-white/10 transition"
             >
               Contact
-            </motion.a>
+            </a>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right Image */}
+        {/* Image */}
         <motion.div
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 5, repeat: Infinity }}
-          className="flex justify-center items-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="flex justify-center"
         >
-          <div className="p-2 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600">
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-cyan-400 blur-2xl opacity-40" />
             <img
-              src="https://res.cloudinary.com/dkqnq6rom/image/upload/v1767863137/WhatsApp_Image_2026-01-04_at_12.05.56_PM_zit07d.jpg"
+              src=""
               alt="Drishti Verma"
-              className="w-64 h-64 rounded-full object-cover border-4 border-black"
+              className="relative w-72 h-72 rounded-full object-cover border border-white/20"
             />
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
