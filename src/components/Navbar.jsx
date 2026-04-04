@@ -1,78 +1,139 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Instagram } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navItems = [
+    { name: "Home", href: "#hero" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   const socialLinks = [
-    { icon: <Github size={22} />, href: "https://github.com/" },
-    { icon: <Linkedin size={22} />, href: "https://linkedin.com/" },
-    { icon: <Instagram size={22} />, href: "https://instagram.com/" },
+    { Icon: Github, href: "https://github.com/yourusername" },
+    { Icon: Linkedin, href: "https://linkedin.com/in/yourusername" },
+    { Icon: Instagram, href: "https://instagram.com/yourusername" },
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 80, damping: 12 }}
-      className="fixed top-0 left-0 w-full bg-gradient-to-r from-gray-900 via-gray-950 to-gray-900 backdrop-blur-md shadow-lg border-b border-cyan-500/30 flex justify-between items-center px-10 py-4 z-50"
-    >
-      {/* Left: Logo */}
-      <motion.h1
-        whileHover={{
-          scale: 1.1,
-          textShadow: "0px 0px 12px #06b6d4",
-        }}
-        transition={{ type: "spring", stiffness: 300 }}
-        className="text-2xl font-bold text-cyan-400 cursor-pointer"
-      >
-        DV
-      </motion.h1>
+    <nav className="fixed w-full z-50 top-0 left-0
+      bg-gradient-to-r from-slate-950/80 via-slate-900/70 to-slate-950/80
+      backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_-10px_rgba(0,255,255,0.15)]">
 
-      {/* Right side: Resume Button + Social Icons */}
-      <div className="flex items-center gap-6">
-        {/* Resume Button */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-16">
+
+        {/* Logo */}
         <motion.a
-          href="/resume.pdf"
-          download
+          href="#hero"
           whileHover={{
-            scale: 1.07,
-            background: "linear-gradient(90deg, #06b6d4, #3b82f6)",
-            boxShadow: "0 0 15px #3b82f6aa",
-            color: "#fff",
-            borderColor: "transparent",
+            scale: 1.3,
+            color: "#38BDF8",
+            textShadow: "0 0 10px #38BDF8, 0 0 25px #22D3EE",
           }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="flex items-center gap-2 px-4 py-2 border border-cyan-400 text-cyan-300 rounded-md cursor-pointer font-medium bg-transparent hover:text-white transition-all duration-200"
+          className="text-white font-extrabold text-2xl md:text-3xl tracking-tight font-mono cursor-pointer"
         >
-          <Download size={18} />
-          Download Resume
+          DV
         </motion.a>
 
-        {/* Social Icons */}
-        <div className="flex gap-5">
-          {socialLinks.map((link, i) => (
-            <motion.a
-              key={i}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{
-                scale: 1.2,
-                color: "#06b6d4",
-                textShadow: "0px 0px 10px #06b6d4",
-                rotate: 5,
-              }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="text-gray-300 hover:text-cyan-400 transition-all"
-            >
-              {link.icon}
-            </motion.a>
-          ))}
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-8 text-slate-200 font-medium">
+            {navItems.map((item, idx) => (
+              <motion.li
+                key={idx}
+                whileHover={{ y: -2, color: "#38BDF8" }}
+                transition={{ duration: 0.2 }}
+                className="relative after:absolute after:left-0 after:-bottom-1
+                after:h-[2px] after:w-0 after:bg-gradient-to-r
+                after:from-cyan-400 after:to-blue-500
+                after:transition-all hover:after:w-full"
+              >
+                <a href={item.href}>{item.name}</a>
+              </motion.li>
+            ))}
+          </ul>
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-6 ml-6 text-slate-300">
+            {socialLinks.map(({ Icon, href }, idx) => (
+              <motion.a
+                key={idx}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                animate={{ y: [0, -5, 0], x: [0, 2, -2, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.2,
+                  delay: idx * 0.2,
+                }}
+                whileHover={{
+                  scale: 1.3,
+                  color: "#38BDF8",
+                  textShadow: "0 0 10px #38BDF8, 0 0 20px #22D3EE",
+                }}
+              >
+                <Icon size={22} strokeWidth={2} />
+              </motion.a>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Toggle */}
+        <div className="md:hidden text-white">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
       </div>
-    </motion.nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.ul
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden flex flex-col items-center gap-6 py-6
+          bg-slate-950/95 backdrop-blur-xl text-slate-200"
+        >
+          {navItems.map((item, idx) => (
+            <li key={idx}>
+              <a
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="hover:text-cyan-400 transition"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+
+          <div className="flex gap-6 mt-4">
+            {socialLinks.map(({ Icon, href }, idx) => (
+              <motion.a
+                key={idx}
+                href={href}
+                animate={{ y: [0, -5, 0], x: [0, 2, -2, 0] }}
+                transition={{ repeat: Infinity, duration: 1.2, delay: idx * 0.2 }}
+                whileHover={{ scale: 1.3, color: "#38BDF8" }}
+              >
+                <Icon size={26} />
+              </motion.a>
+            ))}
+          </div>
+        </motion.ul>
+      )}
+    </nav>
   );
 }
