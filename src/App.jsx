@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import Hero from './components/Hero.jsx'
 // import Tech from './components/Tech'
 import Exp from './components/Exp'
 import Contact from './components/Contact'
@@ -14,9 +14,9 @@ export default function App() {
    <Hero/>
    {/* <Tech/> */}
    <Exp/>
+   <Project/>
    <Contact/>
    <Footer/>
-   <Project/>
    <Pagenotfound/>
    </div>
   )

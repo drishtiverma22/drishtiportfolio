@@ -1,67 +1,123 @@
-import React from 'react';
+import React from "react";
+import { Github, ExternalLink } from "lucide-react";
 
-const Hero = () => {
+const projects = [
+  {
+    title: "Personal Portfolio",
+    description:
+      "A modern responsive portfolio built with React, Tailwind CSS and Framer Motion featuring smooth animations and interactive UI.",
+    image: "/images/portfolio.png",
+    tech: ["React", "Tailwind CSS", "Framer Motion"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "Study Visa Consultancy",
+    description:
+      "A complete consultancy website with dynamic routing, responsive pages, contact forms and modern UI.",
+    image: "/images/visa.png",
+    tech: ["React", "React Router", "Tailwind CSS"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "ChronoElite",
+    description:
+      "Luxury watch e-commerce website featuring premium UI, Swiper slider and responsive design.",
+    image: "/images/watch.png",
+    tech: ["React", "Tailwind CSS", "Swiper"],
+    github: "#",
+    live: "#",
+  },
+];
+
+const Project = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-[#0a192f] overflow-hidden">
-      {/* Background Decorative Element: Grid Pattern */}
-      <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-      
-      {/* Radial Gradient for Depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-transparent to-transparent"></div>
+    <section
+      id="projects"
+      className="bg-[#0a192f] text-white py-24 px-6"
+    >
+      <div className="max-w-7xl mx-auto">
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl">
-          {/* Tagline */}
-          <div className="inline-block px-4 py-1.5 mb-6 border border-cyan-500/30 bg-cyan-500/10 rounded-full">
-            {/* <span className="text-cyan-400 text-sm font-mono tracking-widest uppercase">
-              // Securing the Digital Frontier
-            </span> */}
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Drishti Verma.</span>
-          </h1>
-
-          <h2 className="text-3xl md:text-4xl font-semibold text-slate-300 mb-8">
-            Web Development Associate <span className="text-cyan-500">&</span> Cyber Security Student.
-          </h2>
-
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-            I bridge the gap between <span className="text-white">elegant user experiences</span> and 
-            <span className="text-white"> robust security architectures.</span> Currently focused on building 
-            scalable web applications that are hardened against modern threats.
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <p className="text-cyan-400 uppercase tracking-[4px] mb-3">
+            Portfolio
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-[#0a192f] font-bold rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">
-              View My Work
-            </button>
-            <button className="px-8 py-4 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-bold rounded-lg transition-all">
-              Download CV
-            </button>
-          </div>
-        </div>
-      </div>
+          <h2 className="text-5xl font-bold">
+            Featured <span className="text-cyan-400">Projects</span>
+          </h2>
 
-      {/* Decorative Terminal-style Mockup (Bottom Right) */}
-      <div className="hidden lg:block absolute bottom-10 right-10 w-96 p-4 rounded-lg bg-[#112240] border border-slate-700 shadow-2xl opacity-40 hover:opacity-100 transition-opacity">
-        <div className="flex gap-1.5 mb-3">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          <p className="text-slate-400 mt-5 max-w-2xl mx-auto">
+            Here are some of my recent projects showcasing my skills in
+            Web Development, UI/UX and Cyber Security.
+          </p>
         </div>
-        <div className="font-mono text-sm text-cyan-300">
-          <p>$ nmap -sV drishti_verma_portfolio</p>
-          <p className="text-slate-500">Scanning ports...</p>
-          <p className="text-green-400">80/tcp OPEN (React)</p>
-          <p className="text-green-400">443/tcp OPEN (Secure)</p>
-          <p className="text-slate-500">$ _</p>
+
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="bg-[#112240] rounded-xl overflow-hidden border border-slate-700 hover:border-cyan-400 transition duration-300 hover:-translate-y-2"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-52 object-cover"
+              />
+
+              <div className="p-6">
+
+                <h3 className="text-2xl font-semibold mb-3">
+                  {project.title}
+                </h3>
+
+                <p className="text-slate-400 mb-6">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((item, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-6">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-white hover:text-cyan-400"
+                  >
+                    <Github size={20} />
+                    GitHub
+                  </a>
+
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-cyan-400 hover:text-white"
+                  >
+                    <ExternalLink size={20} />
+                    Live
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default Hero;
+export default Project;

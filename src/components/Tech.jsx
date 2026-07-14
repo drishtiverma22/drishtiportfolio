@@ -6,7 +6,7 @@ import {
   Server,
   Database,
   Linux,
-  Git,
+  
   Cpu,
   Box,
   Cloud,
